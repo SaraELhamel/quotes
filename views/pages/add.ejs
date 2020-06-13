@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS (load bootstrap from a CDN) -->
+ <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+ <!-- <link rel="stylesheet" href="main.css">  -->
+ <title>Add</title>
+<style>
+   body{
+    background-color: wheat;
+    text-align: center;
+    
+}
+#form{
+    color: rgb(206, 33, 33);
+    border: solid gray 1px;
+    margin: 0 auto; 
+    width:100%;
+    display: inline-block;
+    text-align: center;
+    border-radius: 5px;
+    background-color: gold;
+    padding: 150px;
+}
+
+  input {
+    text-align: right;
+    width: 30%;
+    padding-right: 10px;
+   }
+   #em{
+    text-align: right;
+    width: 30%;
+    padding-right: 20px;
+   }
+   
+#btn{
+    color: black;
+    background-color: brown;
+    padding: 5px;
+    margin-left: 4%;
+    text-align: center;
+    width: 10%;
+
+}
+h1{
+    text-align: center;
+    color: brown;
+}
+</style>
+</head>
+ <h1> ADD FORM</h1>
+<body>
+    <form method="post">
+        <p>
+            <label >Id</label>
+            <input type="number" name=id>
+         </p>
+        
+         <p>
+            <label >Citation</label>
+            <input type="text" name=username>
+         </p>
+         <p>
+            <label >Auteur</label>
+            <input type="text" name=content_name>
+         </p>
+         <p>
+            <label >Source</label>
+            <input type="text" name=content>
+         </p>
+         
+         <input type="submit" name="Add" id="btn" value="Add">
+          
+         </form>
+</body>
+</html>
