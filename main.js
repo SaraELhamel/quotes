@@ -27,7 +27,7 @@ var bodyParser = require('body-parser');
    console.log('Data received :');
    console.log(result);
   });
-    const quotes = { id:'6',citation: 'The sunrise of course doesnt care if we watch it or not it will keep on being beautiful even if we dont look at it ' ,auteur:'Gene Amole',source:'TheMindsetJournal' };
+    const quotes = { citation: 'The sunrise of course doesnt care if we watch it or not it will keep on being beautiful even if we dont look at it ' ,auteur:'Gene Amole',source:'TheMindsetJournal' };
     connection.query('INSERT INTO quotes SET ?', quotes, (err, res) => {
        if(err) throw err;
     console.log('Last insert ID:', res.insertId);
@@ -42,10 +42,10 @@ var bodyParser = require('body-parser');
    );
    connection.query(
      'DELETE FROM quotes WHERE id = ?', [1], (err, result) => {
-       if (err) throw err;
+        if (err) throw err;
        console.log(`Deleted ${result.affectedRows} row(s)`);
      }
-   );
+    );
 
 app.set('view engine','ejs');
 
@@ -54,12 +54,18 @@ app.get('/', function(req, res) {
     res.render('pages/add');
 });
 
+app.post('/', urlencodedParser, function(req, res) {
+  const quotes = {id:req.body.id, citation:req.body.citation  ,auteur:req.body.auteur,source:req.body.source  };
+
+  connection.query('INSERT INTO quotes SET ?', quotes, (err, res) => {
+    if(err) throw err});
+  res.render('pages/add');
+});
  app.post('/quotes', urlencodedParser, function(req, res) {
-    connection.query('DELETE FROM `quotes` WHERE 1', function(err, rows, fields) {
+    connection.query('DELETE FROM `quotes` WHERE 8', function(err, rows, fields) {
         if (err) throw err;
         console.log('The solution is: ', rows);
       });
-
  });
 
 
