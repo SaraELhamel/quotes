@@ -1,7 +1,5 @@
 const express = require('express');
 const app = express();
-// const path = require('path');
-// app.use(express.static(path.join(__dirname,"style")));
 var bodyParser = require('body-parser');
  var mysql      = require('mysql');
  var connection = mysql.createConnection({
@@ -22,37 +20,25 @@ var bodyParser = require('body-parser');
      }
 
  });
- connection.query('SELECT * FROM quotes', (err,result,fields) => {
-    if(err) throw err;
-   console.log('Data received :');
-   console.log(result);
-  });
-    const quotes = { citation: 'The sunrise of course doesnt care if we watch it or not it will keep on being beautiful even if we dont look at it ' ,auteur:'Gene Amole',source:'TheMindsetJournal' };
-    connection.query('INSERT INTO quotes SET ?', quotes, (err, res) => {
-       if(err) throw err;
-    console.log('Last insert ID:', res.insertId);
-    });
-     connection.query(
-     'UPDATE quotes SET auteur = ? Where ID = ?',
-     ['Ghandi', 2],
-     (err, result) => {
-      if (err) throw err;
-       console.log(`Changed ${result.changedRows} row(s)`);
-     }
-   );
-   connection.query(
-     'DELETE FROM quotes WHERE id = ?', [1], (err, result) => {
-        if (err) throw err;
-       console.log(`Deleted ${result.affectedRows} row(s)`);
-     }
-    );
 
-app.set('view engine','ejs');
-
-app.get('/', function(req, res) {
-
-    res.render('pages/add');
+  
+app.get("/", (req, res) => {
+  connection.query('SELECT * FROM quotes', (err, rows) => {
+      if (err) {
+          console.log("Error getting data")
+      } else {
+          res.render('pages/Home',{ quotesdata : rows})
+      }
+  })
 });
+
+
+ app.set('view engine','ejs');
+
+ app.get('/', function(req, res) {
+
+     res.render('pages/edit');
+ });
 
 app.post('/', urlencodedParser, function(req, res) {
   const quotes = {id:req.body.id, citation:req.body.citation  ,auteur:req.body.auteur,source:req.body.source  };
@@ -67,6 +53,36 @@ app.post('/', urlencodedParser, function(req, res) {
         console.log('The solution is: ', rows);
       });
  });
+
+ app.get('/update/:id',(req, res) => {
+  
+  res.render('pages/edit');
+
+  
+});
+app.get('/quotes', (req, res, next) => {
+  const sql = "SELECT * FROM quotes";
+  const query = conn.query(sql, (err, rows) => {
+      if (err) throw err;
+
+
+      res.render('/pages/Home', {
+          quotes: rows
+      });
+       
+  })
+ })
+
+app.post('/update/:id',urlencodedParser,(req, res) => {
+  
+ 
+  let sql = "Update quotes SET  citation='"+req.body.citation+"', auteur='"+req.body.auteur+"', source='"+req.body.source+"' where id ='"+req.params.id+"'";
+  console.log(sql)
+  let query = connection.query(sql,(err, results) => {
+    if(err) throw err;
+    res.render('pages/edit');
+  });
+});
 
 
 app.listen(process.env.port || 3000,function(){
