@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 17 juin 2020 à 19:19
+-- Généré le : sam. 27 juin 2020 à 14:18
 -- Version du serveur :  10.4.11-MariaDB
 -- Version de PHP : 7.2.30
 
@@ -39,14 +39,11 @@ CREATE TABLE `quotes` (
 --
 
 INSERT INTO `quotes` (`id`, `citation`, `auteur`, `source`) VALUES
-(2, 'Trust that when the answer is no there is a yes down the road', 'Ghandi', 'Quotling.com'),
-(3, 'your faith has to be bigger than your fear ', 'Majid', 'facebook'),
+(2, 'your faith has to be bigger than your fear ', 'sara', 'google'),
+(3, 'some said yes and some said no but only God knows it all', 'mona', 'molina'),
 (4, 'Life is tough my darling but so are you', 'Stephanie Benett Henry', 'livelifehappy.com'),
 (5, 'Leave a little sparkle wherever you go', 'Samouel', 'Pintrest'),
-(6, 'The sunrise of course doesnt care if we watch it or not it will keep on being beautiful even if we dont look at it ', 'Gene Amole', 'TheMindsetJournal'),
 (7, 'The sunrise of course doesnt care if we watch it or not it will keep on being beautiful even if we dont look at it ', 'Gene Amole', 'TheMindsetJournal'),
-(8, 'The sunrise of course doesnt care if we watch it or not it will keep on being beautiful even if we dont look at it ', 'Gene Amole', 'TheMindsetJournal'),
-(9, 'The sunrise of course doesnt care if we watch it or not it will keep on being beautiful even if we dont look at it ', 'Gene Amole', 'TheMindsetJournal'),
 (12, 'jump to it', 'Nansi', 'google'),
 (14, 'life is hard so are you dear', 'sara', 'google'),
 (23, 'always be your self ', 'Marie', 'google');
@@ -69,7 +66,7 @@ ALTER TABLE `quotes`
 -- AUTO_INCREMENT pour la table `quotes`
 --
 ALTER TABLE `quotes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
